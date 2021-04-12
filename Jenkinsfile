@@ -1,19 +1,15 @@
-pipeline{
-    stages{
-        stage('Unit Testing'){
-            sh 'echo "Running unit testing"' 
+pipeline {
+    agent {
+        docker {
+            image 'node:6-alpine' 
+            args '-p 3000:3000' 
         }
-        stage('Build Docker Image'){
-            sh 'echo "Running unit testing"' 
-        }
-        stage('Tag Docker Image'){
-            sh 'echo "Running unit testing"' 
-        }
-        stage('Login To Dockerhub'){
-            sh 'echo "Running unit testing"' 
-        }
-        stage('Push Docker Image To Dockerhub'){
-            sh 'echo "Running unit testing"' 
+    }
+    stages {
+        stage('Build') { 
+            steps {
+                sh 'npm install' 
+            }
         }
     }
 }
